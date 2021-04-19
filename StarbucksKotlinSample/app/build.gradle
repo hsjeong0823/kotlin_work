@@ -58,7 +58,7 @@ android {
     }
 
     /* 어플리케이션 변수 초기화 셋팅  */
-    applicationVariants.all { variant ->
+    /*applicationVariants.all { variant ->
         def propsFile = rootProject.file("uri.properties")
         def flavor = variant.properties.get('flavorName');
         if (propsFile.exists()) {
@@ -68,7 +68,7 @@ android {
             def scheme = '\"' + props['scheme'] + "\"";
             def securityScheme = '\"' + props['securityScheme'] + "\"";
 
-            /* MSR URI  */
+            *//* MSR URI  *//*
             def msrDevUri = '\"' + props['msrDevUri'] + "\"";
             def msrTestUri = '\"' + props['msrTestUri'] + "\"";
             def msrStgUri = '\"' + props['msrStgUri'] + "\"";
@@ -81,41 +81,41 @@ android {
             def msrDrUriPath = '\"' + props['msrDrUriPath'] + "\"";
             def msrRealUriPath = '\"' + props['msrRealUriPath'] + "\"";
 
-            /* MSR 외부 URI  */
+            *//* MSR 외부 URI  *//*
             def msrExternalDevUri = '\"' + props['msrExternalDevUri'] + "\"";
             def msrExternalRealUri = '\"' + props['msrExternalRealUri'] + "\"";
 
             def msrExternalDevUriPath = '\"' + props['msrExternalDevUriPath'] + "\"";
             def msrExternalRealUriPath = '\"' + props['msrExternalRealUriPath'] + "\"";
 
-            /* 홈페이지 URI  */
+            *//* 홈페이지 URI  *//*
             def webDevUri = '\"' + props['webDevUri'] + "\"";
             def webTestUri = '\"' + props['webTestUri'] + "\"";
             def webStgUri = '\"' + props['webStgUri'] + "\"";
             def webDrUri = '\"' + props['webDrUri'] + "\"";
             def webRealUri = '\"' + props['webRealUri'] + "\"";
 
-            /* 인증서버 URI  */
+            *//* 인증서버 URI  *//*
             def authDevUri = '\"' + props['authDevUri'] + "\"";
             def authTestUri = '\"' + props['authTestUri'] + "\"";
             def authStgUri = '\"' + props['authStgUri'] + "\"";
             def authDrUri = '\"' + props['authDrUri'] + "\"";
             def authRealUri = '\"' + props['authRealUri'] + "\"";
 
-            /* 연결된 서비스 관리 URI  */
+            *//* 연결된 서비스 관리 URI  *//*
             def authManageDevUri = '\"' + props['authManageDevUri'] + "\"";
             def authManageTestUri = '\"' + props['authManageTestUri'] + "\"";
             def authManageStgUri = '\"' + props['authManageStgUri'] + "\"";
             def authManageDrUri = '\"' + props['authManageDrUri'] + "\"";
             def authManageRealUri = '\"' + props['authManageRealUri'] + "\"";
 
-            /* VOC URI  */
+            *//* VOC URI  *//*
             def vocDevUri = '\"' + props['vocDevUri'] + "\"";
             def vocStgUri = '\"' + props['vocStgUri'] + "\"";
             def vocRealUri = '\"' + props['vocRealUri'] + "\"";
 
             switch (flavor) {
-            /* 개발자 모드 인지 체크  */
+            *//* 개발자 모드 인지 체크  *//*
                 case FLAVOR_DEV:
                     buildConfigField "String", "SCHEME", securityScheme
                     buildConfigField "String", "AUTHORITY", msrDevUri
@@ -127,7 +127,7 @@ android {
                     buildConfigField "String", "AUTH_TOKEN", authDevUri
                     buildConfigField "String", "AUTH_MANAGE", authManageDevUri
                     break;
-            /* 상용 모드 인지 체크  */
+            *//* 상용 모드 인지 체크  *//*
                 case FLAVOR_REAL:
                     buildConfigField "String", "SCHEME", securityScheme
                     buildConfigField "String", "AUTHORITY", msrRealUri
@@ -139,7 +139,7 @@ android {
                     buildConfigField "String", "AUTH_TOKEN", authRealUri
                     buildConfigField "String", "AUTH_MANAGE", authManageRealUri
                     break;
-            /* 테스트 모드 인지 체크  */
+            *//* 테스트 모드 인지 체크  *//*
                 case FLAVOR_TEST:
                     buildConfigField "String", "SCHEME", securityScheme
                     buildConfigField "String", "AUTHORITY", msrTestUri
@@ -151,7 +151,7 @@ android {
                     buildConfigField "String", "AUTH_TOKEN", authTestUri
                     buildConfigField "String", "AUTH_MANAGE", authManageTestUri
                     break;
-            /* STG 모드 인지 체크  */
+            *//* STG 모드 인지 체크  *//*
                 case FLAVOR_STG:
                     buildConfigField "String", "SCHEME", securityScheme
                     buildConfigField "String", "AUTHORITY", msrStgUri
@@ -163,7 +163,7 @@ android {
                     buildConfigField "String", "AUTH_TOKEN", authStgUri
                     buildConfigField "String", "AUTH_MANAGE", authManageStgUri
                     break;
-            /* DR  모드 인지 체크  */
+            *//* DR  모드 인지 체크  *//*
                 case FLAVOR_DR:
                     buildConfigField "String", "SCHEME", securityScheme
                     buildConfigField "String", "AUTHORITY", msrDrUri
@@ -178,7 +178,7 @@ android {
             }
         }
 
-    }
+    }*/
 }
 
 dependencies {

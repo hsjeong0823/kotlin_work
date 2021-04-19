@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.text.TextUtils
 import com.example.starbuckskotlin.util.PreferencesUtil
-import com.example.starbuckskotlin.util.Utility
 
 class DeviceInfo {
     companion object {
@@ -39,7 +38,7 @@ class DeviceInfo {
         fun getUDIDIfEmptyMake(ctx: Context): String? {
             var UDID: String? = PreferencesUtil.getString(ctx, DEVICE_ID_KEY)
             if (TextUtils.isEmpty(UDID)) {
-                UDID = Utility.getUUID(ctx)
+//                UDID = Utility.getUUID(ctx)
                 setUDID(ctx, UDID)
             }
             return UDID
