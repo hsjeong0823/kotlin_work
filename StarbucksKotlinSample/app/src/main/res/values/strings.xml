@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StarbucksKotlinSample</string>
+
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="confirm">확인</string>
+</resources>

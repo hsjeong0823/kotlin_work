@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 공통 색상 -->
+    <color name="colorPrimary">@color/c_ffffff</color>
+    <color name="colorPrimaryDark">@color/c_000000</color>
+    <color name="colorAccent">@color/c_00a862</color>
+
+    <!-- API 버전별 statusBar 배경 Color -->
+    <color name="statusBarColorApi21">@color/c_000000</color>
+    <color name="statusBarColorApi23Black">@color/c_000000</color>
+    <color name="statusBarColorApi23White">@color/c_ffffff</color>
+
+    <color name="c_transparent">#00000000</color>
+    <color name="colorSkeleton">#eeeeee</color>
+    <color name="colorAreaCheck">#51000000</color>
+
+    <color name="rewardProgressBarBg">#eeeeee</color>
+    <color name="rewardProgressBarWelcome">#666666</color>
+
+    <color name="white">@color/c_ffffff</color>
+
+    <!-- Ripple 배경 Color -->
+    <color name="ripple_bg_light">#1e000000</color>
+    <color name="ripple_bg_dark">#1effffff</color>
+
+    <!-- Components Btn Color -->
+    <color name="c_00a862">#00a862</color>
+    <color name="c_4ac18f">#4ac18f</color>
+    <color name="c_1e000000">#1e000000</color>
+    <color name="c_1900a862">#1900a862</color>
+    <color name="c_19000000">#19000000</color>
+    <color name="c_26c2a661">#26c2a661</color>
+    <color name="c_c2a661">#c2a661</color>
+    <color name="c_e3c270">#e3c270</color>
+
+    <color name="c_ffffff">#ffffff</color>
+    <color name="c_c7ffffff">#c7ffffff</color>
+    <color name="c_b3ffffff">#b3ffffff</color>
+    <color name="c_80ffffff">#80ffffff</color>
+    <color name="c_4cffffff">#4cffffff</color>
+    <color name="c_1effffff">#1effffff</color>
+
+    <color name="c_000000">#000000</color>
+    <color name="c_de000000">#de000000</color>
+    <color name="c_94000000">#94000000</color>
+    <color name="c_8f000000">#8f000000</color>
+    <color name="c_80000000">#80000000</color>
+    <color name="c_76000000">#76000000</color>
+    <color name="c_61000000">#61000000</color>
+    <color name="c_47000000">#47000000</color>
+    <color name="c_42000000">#42000000</color>
+    <color name="c_0f000000">#0f000000</color>
+    <color name="c_e600a862">#e600a862</color>
+
+    <color name="c_00874a">#00874a</color>
+    <color name="c_3d3935">#3d3935</color>
+    <color name="c_e75b52">#e75b52</color>
+    <color name="c_2d2926">#2d2926</color>
+    <color name="c_212121">#212121</color>
+
+    <color name="c_f5f5f5">#f5f5f5</color>
+    <color name="c_99f5f5f5">#99f5f5f5</color>
+    <color name="c_80f5f5f5">#80f5f5f5</color>
+
+    <color name="c_ccedebe9">#ccedebe9</color>
+    <color name="c_805c3c">#805c3c</color>
+    <color name="c_ca433b">#ca4336</color>
+    <color name="c_0076ff">#0076ff</color>
+    <color name="c_f7f7f7">#f7f7f7</color>
+    <color name="c_4f2c1c">#4f2c1c</color>
+    <color name="c_b67f49">#b67f49</color>
+    <color name="c_7e5b3b">#7e5b3b</color>
+    <color name="c_0D00a862">#0D00a862</color>
+    <color name="c_666666">#666666</color>
+    <color name="c_fceeed">#fceeed</color>
+    <color name="c_eeeeee">#eeeeee</color>
+    <color name="c_e69b714e">#e69b714e</color>
+    <color name="c_924d2d">#924d2d</color>
+    <color name="c_9b714e">#9b714e</color>
+    <color name="c_1ec8c8c8">#1ec8c8c8</color>
+
+</resources>

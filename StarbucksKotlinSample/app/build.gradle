@@ -1,0 +1,199 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def FLAVOR_DEV = 'dev';
+def FLAVOR_REAL = 'real';
+def FLAVOR_TEST = '_test';
+def FLAVOR_STG = 'stg';
+def FLAVOR_DR = 'dr';
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.example.starbuckskotlin"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        // 1. Android 2.1(API 레벨 7이상) 2. Android Plugin for Gradle 1.5.0-alpha1 이상 3. Android Studio 1.3 이상
+        // 데이터 바인딩 라이브러리 : https://developer.android.com/topic/libraries/data-binding?hl=ko
+        enabled = true
+    }
+    // step 01 Build Variants > Build Variant devDebug or check!
+    // step 02 Gradle projects  install or assemble next DevDebug or DevRelease (dev) RealDebug or RealRelease (real)
+    // 패키지를 분리 하여 상용 / 테스트 버전을 분리할수 있게금 변경 ios 와 마찬가지로 패키지명이 달라지므로 분리된 테스트버전은 푸시가 안된다 gcm 서버에 real 패키지명만 등록되어있으므로
+    // Specifies a flavor dimension.
+    flavorDimensions "starbucks"
+    productFlavors {
+        dev {
+            dimension "starbucks"
+        }
+        real {
+            dimension "starbucks"
+        }
+        _test {
+            dimension "starbucks"
+        }
+        stg {
+            dimension "starbucks"
+        }
+        dr {
+            dimension "starbucks"
+        }
+    }
+
+    /* 어플리케이션 변수 초기화 셋팅  */
+    applicationVariants.all { variant ->
+        def propsFile = rootProject.file("uri.properties")
+        def flavor = variant.properties.get('flavorName');
+        if (propsFile.exists()) {
+            def props = new Properties();
+            props.load(new FileInputStream(propsFile));
+
+            def scheme = '\"' + props['scheme'] + "\"";
+            def securityScheme = '\"' + props['securityScheme'] + "\"";
+
+            /* MSR URI  */
+            def msrDevUri = '\"' + props['msrDevUri'] + "\"";
+            def msrTestUri = '\"' + props['msrTestUri'] + "\"";
+            def msrStgUri = '\"' + props['msrStgUri'] + "\"";
+            def msrDrUri = '\"' + props['msrDrUri'] + "\"";
+            def msrRealUri = '\"' + props['msrRealUri'] + "\"";
+
+            def msrDevUriPath = '\"' + props['msrDevUriPath'] + "\"";
+            def msrTestUriPath = '\"' + props['msrTestUriPath'] + "\"";
+            def msrStgUriPath = '\"' + props['msrStgUriPath'] + "\"";
+            def msrDrUriPath = '\"' + props['msrDrUriPath'] + "\"";
+            def msrRealUriPath = '\"' + props['msrRealUriPath'] + "\"";
+
+            /* MSR 외부 URI  */
+            def msrExternalDevUri = '\"' + props['msrExternalDevUri'] + "\"";
+            def msrExternalRealUri = '\"' + props['msrExternalRealUri'] + "\"";
+
+            def msrExternalDevUriPath = '\"' + props['msrExternalDevUriPath'] + "\"";
+            def msrExternalRealUriPath = '\"' + props['msrExternalRealUriPath'] + "\"";
+
+            /* 홈페이지 URI  */
+            def webDevUri = '\"' + props['webDevUri'] + "\"";
+            def webTestUri = '\"' + props['webTestUri'] + "\"";
+            def webStgUri = '\"' + props['webStgUri'] + "\"";
+            def webDrUri = '\"' + props['webDrUri'] + "\"";
+            def webRealUri = '\"' + props['webRealUri'] + "\"";
+
+            /* 인증서버 URI  */
+            def authDevUri = '\"' + props['authDevUri'] + "\"";
+            def authTestUri = '\"' + props['authTestUri'] + "\"";
+            def authStgUri = '\"' + props['authStgUri'] + "\"";
+            def authDrUri = '\"' + props['authDrUri'] + "\"";
+            def authRealUri = '\"' + props['authRealUri'] + "\"";
+
+            /* 연결된 서비스 관리 URI  */
+            def authManageDevUri = '\"' + props['authManageDevUri'] + "\"";
+            def authManageTestUri = '\"' + props['authManageTestUri'] + "\"";
+            def authManageStgUri = '\"' + props['authManageStgUri'] + "\"";
+            def authManageDrUri = '\"' + props['authManageDrUri'] + "\"";
+            def authManageRealUri = '\"' + props['authManageRealUri'] + "\"";
+
+            /* VOC URI  */
+            def vocDevUri = '\"' + props['vocDevUri'] + "\"";
+            def vocStgUri = '\"' + props['vocStgUri'] + "\"";
+            def vocRealUri = '\"' + props['vocRealUri'] + "\"";
+
+            switch (flavor) {
+            /* 개발자 모드 인지 체크  */
+                case FLAVOR_DEV:
+                    buildConfigField "String", "SCHEME", securityScheme
+                    buildConfigField "String", "AUTHORITY", msrDevUri
+                    buildConfigField "String", "AUTHORITY_PATH", msrDevUriPath
+                    buildConfigField "String", "AUTHORITY_EXTERNAL", msrExternalDevUri
+                    buildConfigField "String", "AUTHORITY_EXTERNAL_PATH", msrExternalDevUriPath
+                    buildConfigField "String", "WEB_AUTHORITY", webDevUri
+                    buildConfigField "String", "WEB_STORE", vocDevUri
+                    buildConfigField "String", "AUTH_TOKEN", authDevUri
+                    buildConfigField "String", "AUTH_MANAGE", authManageDevUri
+                    break;
+            /* 상용 모드 인지 체크  */
+                case FLAVOR_REAL:
+                    buildConfigField "String", "SCHEME", securityScheme
+                    buildConfigField "String", "AUTHORITY", msrRealUri
+                    buildConfigField "String", "AUTHORITY_PATH", msrRealUriPath
+                    buildConfigField "String", "AUTHORITY_EXTERNAL", msrExternalRealUri
+                    buildConfigField "String", "AUTHORITY_EXTERNAL_PATH", msrExternalRealUriPath
+                    buildConfigField "String", "WEB_AUTHORITY", webRealUri
+                    buildConfigField "String", "WEB_STORE", vocRealUri
+                    buildConfigField "String", "AUTH_TOKEN", authRealUri
+                    buildConfigField "String", "AUTH_MANAGE", authManageRealUri
+                    break;
+            /* 테스트 모드 인지 체크  */
+                case FLAVOR_TEST:
+                    buildConfigField "String", "SCHEME", securityScheme
+                    buildConfigField "String", "AUTHORITY", msrTestUri
+                    buildConfigField "String", "AUTHORITY_PATH", msrTestUriPath
+                    buildConfigField "String", "AUTHORITY_EXTERNAL", msrExternalDevUri
+                    buildConfigField "String", "AUTHORITY_EXTERNAL_PATH", msrExternalDevUriPath
+                    buildConfigField "String", "WEB_AUTHORITY", webTestUri
+                    buildConfigField "String", "WEB_STORE", vocDevUri
+                    buildConfigField "String", "AUTH_TOKEN", authTestUri
+                    buildConfigField "String", "AUTH_MANAGE", authManageTestUri
+                    break;
+            /* STG 모드 인지 체크  */
+                case FLAVOR_STG:
+                    buildConfigField "String", "SCHEME", securityScheme
+                    buildConfigField "String", "AUTHORITY", msrStgUri
+                    buildConfigField "String", "AUTHORITY_PATH", msrStgUriPath
+                    buildConfigField "String", "AUTHORITY_EXTERNAL", msrExternalDevUri
+                    buildConfigField "String", "AUTHORITY_EXTERNAL_PATH", msrExternalDevUriPath
+                    buildConfigField "String", "WEB_AUTHORITY", webStgUri
+                    buildConfigField "String", "WEB_STORE", vocStgUri
+                    buildConfigField "String", "AUTH_TOKEN", authStgUri
+                    buildConfigField "String", "AUTH_MANAGE", authManageStgUri
+                    break;
+            /* DR  모드 인지 체크  */
+                case FLAVOR_DR:
+                    buildConfigField "String", "SCHEME", securityScheme
+                    buildConfigField "String", "AUTHORITY", msrDrUri
+                    buildConfigField "String", "AUTHORITY_PATH", msrDrUriPath
+                    buildConfigField "String", "AUTHORITY_EXTERNAL", msrExternalRealUri
+                    buildConfigField "String", "AUTHORITY_EXTERNAL_PATH", msrExternalRealUriPath
+                    buildConfigField "String", "WEB_AUTHORITY", webDrUri
+                    buildConfigField "String", "WEB_STORE", vocRealUri
+                    buildConfigField "String", "AUTH_TOKEN", authDrUri
+                    buildConfigField "String", "AUTH_MANAGE", authManageDrUri
+                    break;
+            }
+        }
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    /* Support Library (https://material.io/develop/android/docs/getting-started) */
+    implementation 'com.google.android.material:material:1.2.1'
+
+    implementation 'androidx.preference:preference:1.1.1'
+    //implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+}
