@@ -1,5 +1,6 @@
 package com.example.starbuckskotlin.ui
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import com.example.starbuckskotlin.R
@@ -29,10 +30,18 @@ class IntroActivity : BaseActivity() {
         LogUtil.d(TAG, "onNetworkStatusCheck() isNetworkConnected : $isNetworkConnected")
         if (isNetworkConnected) {
             MainActivity.start(this)
+            finish()
         } else {
+            CommonDialog(message = "네트워크 연결 오류",
+                subMessage = "네트워크 연결을 확인해 주세요.",
+                positiveButton = "확인",
+                positiveOnClickListener = object : CommonDialog.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?) {
+                        finish()
+                    }
+                }).show(this)
             Toast.makeText(this, "onNetworkStatusCheck() isNetworkConnected : $isNetworkConnected", Toast.LENGTH_LONG).show()
         }
-        finish()
     }
 
 }

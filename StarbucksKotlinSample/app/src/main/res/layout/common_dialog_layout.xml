@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <!-- width 설정값대로 표시되지 않는 현상으로 상위 레이아웃(FrameLayout) 추가 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/shape_popup_white_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/topMessageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginRight="32dp"
+                android:textColor="@color/c_212121"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/subMessageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="32dp"
+                android:textColor="@color/c_212121"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/messageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginRight="32dp"
+                android:textColor="@color/c_212121"
+                android:textSize="15sp"
+                tools:text="Message" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/negativeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="78dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:stateListAnimator="@null"
+                    tools:text="예" />
+
+                <Button
+                    android:id="@+id/positiveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="9dp"
+                    android:minWidth="78dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:stateListAnimator="@null"
+                    tools:text="아니요" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>
