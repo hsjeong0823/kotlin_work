@@ -17,4 +17,12 @@
         <item name="windowNoTitle">true</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="LoadingProgressDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:windowBackground">@color/c_transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
