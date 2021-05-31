@@ -4,9 +4,14 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import com.example.starbuckskotlin.R
+import com.example.starbuckskotlin.api.RetrofitBuilder
 import com.example.starbuckskotlin.base.BaseActivity
+import com.example.starbuckskotlin.model.CheckInitRes
 import com.example.starbuckskotlin.util.LogUtil
 import com.example.starbuckskotlin.util.NetworkStatus
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class IntroActivity : BaseActivity() {
 
@@ -29,8 +34,27 @@ class IntroActivity : BaseActivity() {
 
         LogUtil.d(TAG, "onNetworkStatusCheck() isNetworkConnected : $isNetworkConnected")
         if (isNetworkConnected) {
-            MainActivity.start(this)
-            finish()
+            RetrofitBuilder.getApiInterface().checkInit().enqueue(object : Callback<CheckInitRes> {
+                override fun onResponse(call: Call<CheckInitRes>, response: Response<CheckInitRes>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            LogUtil.d(TAG, "checkInit() resultCode : ${it.resultCode}")
+                            CommonDialog(message = "checkInit() resultCode : ${it.resultCode}",
+                                subMessage = it.resultMessage,
+                                positiveButton = "확인",
+                                positiveOnClickListener = object : CommonDialog.OnClickListener {
+                                    override fun onClick(dialog: DialogInterface?) {
+                                        MainActivity.start(this@IntroActivity)
+                                        finish()
+                                    }
+                                }).show(this@IntroActivity)
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<CheckInitRes>, t: Throwable) {
+                }
+            })
         } else {
             CommonDialog(message = "네트워크 연결 오류",
                 subMessage = "네트워크 연결을 확인해 주세요.",

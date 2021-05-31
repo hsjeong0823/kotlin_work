@@ -1,5 +1,6 @@
 package com.example.starbuckskotlin.api
 
+import com.example.starbuckskotlin.constants.URI
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,6 +10,7 @@ object RetrofitBuilder {
     init {
         val retrofit = Retrofit.Builder()
             //gson을 이용해 json파싱
+            .baseUrl(URI.scheme + "://" + URI.authorityExternal)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
