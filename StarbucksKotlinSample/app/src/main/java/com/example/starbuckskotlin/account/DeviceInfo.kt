@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.text.TextUtils
+import com.example.starbuckskotlin.BuildConfig
 import com.example.starbuckskotlin.util.PreferencesUtil
 
 class DeviceInfo {
@@ -132,7 +133,7 @@ class DeviceInfo {
          * @param context Application Context
          */
         @JvmStatic
-        fun getCustomUserAgent(context: Context): String? {
+        fun getCustomUserAgent(context: Context): String {
             var customUserAgent: String? = PreferencesUtil.getString(context, USER_AGENT, null)
             if (customUserAgent == null) {
                 customUserAgent = createCustomUserAgent(context)
@@ -140,8 +141,8 @@ class DeviceInfo {
             return customUserAgent
         }
 
-        private fun createCustomUserAgent(context: Context): String? {
-            val customUserAgent = "Starbucks_Android/" + getApplicationVersionName(context) + "(Android:" + getAndroidVersion() + ")"
+        private fun createCustomUserAgent(context: Context): String {
+            val customUserAgent = "Starbucks_Android/" + BuildConfig.VERSION_NAME + "(Android:" + getAndroidVersion() + ")"
             PreferencesUtil.putString(context, USER_AGENT, customUserAgent)
             return customUserAgent
         }

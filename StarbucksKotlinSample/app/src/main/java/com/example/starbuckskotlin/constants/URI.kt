@@ -19,5 +19,9 @@ class URI {
         var authManage: String = BuildConfig.AUTH_MANAGE
 
         const val MSR_CHECK_INIT = "init.json" // 서버 점검 체크
+
+        const val APP_VERSION = "/common/version.do" // 4.1.3. APP버전 조회
+
+        fun getUrlPath(path: String) = authorityPath + path
     }
 }
