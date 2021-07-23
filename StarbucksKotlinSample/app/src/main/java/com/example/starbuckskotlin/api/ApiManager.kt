@@ -48,7 +48,7 @@ class ApiManager private constructor(var context: Context) {
             addInterceptor { chain ->
                 val request = chain.request()
                 chain.proceed(request.newBuilder().apply {
-                    if (!request.url().toString().contains("oauth")) {
+                    if (!request.url.toString().contains("oauth")) {
                         addHeader("Accept", "application/json")
                         addHeader("osType", "android")
                         addHeader("osVersion", DeviceInfo.getAndroidVersion())

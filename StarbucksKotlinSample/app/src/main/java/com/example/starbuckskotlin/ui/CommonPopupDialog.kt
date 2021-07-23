@@ -16,18 +16,18 @@ import com.example.starbuckskotlin.R
 import com.example.starbuckskotlin.databinding.CommonDialogLayoutBinding
 import com.example.starbuckskotlin.util.LogUtil
 
-class CommonDialog(private var detectBackKey: Boolean = true,
-                   private var isNegative: Boolean = true,
-                   private var message: String? = null,
-                   private var subMessage: String? = null,
-                   private var positiveButton: String? = null,
-                   private var negativeButton: String? = null,
-                   private var positiveOnClickListener: OnClickListener? = null,
-                   private var negativeOnClickListener: OnClickListener? = null,
-                   fragmentTag: String? = null): AppCompatDialogFragment() {
+class CommonPopupDialog(private var detectBackKey: Boolean = true,
+                        private var isNegative: Boolean = true,
+                        private var message: String? = null,
+                        private var subMessage: String? = null,
+                        private var positiveButton: String? = null,
+                        private var negativeButton: String? = null,
+                        private var positiveOnClickListener: OnClickListener? = null,
+                        private var negativeOnClickListener: OnClickListener? = null,
+                        fragmentTag: String? = null): AppCompatDialogFragment() {
 
     companion object {
-        private val TAG = CommonDialog::class.java.simpleName
+        private val TAG = CommonPopupDialog::class.java.simpleName
         private const val EXTRA_FRAGMENT_TAG = "EXTRA_FRAGMENT_TAG" // 특정 Dialog 팝업 중복으로 표시 안되도록 별도 tag 설정
         private const val TAG_DEFAULT_COMMON_DIALOG = "TAG_DEFAULT_COMMON_DIALOG"
         private const val TAG_NETWORK_ERROR_DIALOG = "TAG_NETWORK_ERROR_DIALOG"
@@ -57,7 +57,7 @@ class CommonDialog(private var detectBackKey: Boolean = true,
                 if (fragmentTag != TAG_DEFAULT_COMMON_DIALOG) {
                     // 공통 다이얼로그 팝업의 디폴트 테그가 아닐 경우
                     val fragment = it.supportFragmentManager.findFragmentByTag(fragmentTag)
-                    if (fragment is CommonDialog) {
+                    if (fragment is CommonPopupDialog) {
                         // Fragment 존재할 경우 중복으로 표시 되지 않도록 처리
                         return
                     }
