@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.starbuckskotlin.R
 import com.example.starbuckskotlin.base.BaseActivity
 import com.example.starbuckskotlin.databinding.ActivityIntroBinding
+import com.example.starbuckskotlin.ui.common.CommonPopupDialog
 import com.example.starbuckskotlin.util.LogUtil
 import com.example.starbuckskotlin.util.NetworkStatus
 
@@ -32,7 +33,8 @@ class IntroActivity : BaseActivity() {
                 CommonPopupDialog(message = "checkInit() resultCode : ${it.resultCode}",
                     subMessage = it.resultMessage,
                     positiveButton = "확인",
-                    positiveOnClickListener = object : CommonPopupDialog.OnClickListener {
+                    positiveOnClickListener = object :
+                        CommonPopupDialog.OnClickListener {
                         override fun onClick(dialog: DialogInterface?) {
                             finish()
                         }
@@ -83,7 +85,8 @@ class IntroActivity : BaseActivity() {
             CommonPopupDialog(message = "네트워크 연결 오류",
                 subMessage = "네트워크 연결을 확인해 주세요.",
                 positiveButton = "확인",
-                positiveOnClickListener = object : CommonPopupDialog.OnClickListener {
+                positiveOnClickListener = object :
+                    CommonPopupDialog.OnClickListener {
                     override fun onClick(dialog: DialogInterface?) {
                         finish()
                     }

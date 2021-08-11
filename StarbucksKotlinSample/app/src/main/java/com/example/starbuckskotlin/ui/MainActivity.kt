@@ -1,5 +1,6 @@
 package com.example.starbuckskotlin.ui
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.starbuckskotlin.R
 import com.example.starbuckskotlin.base.BaseActivity
 import com.example.starbuckskotlin.databinding.ActivityMainBinding
+import com.example.starbuckskotlin.ui.common.CommonPopupDialog
 import com.example.starbuckskotlin.util.LogUtil
 
 class MainActivity : BaseActivity() {
@@ -31,7 +33,6 @@ class MainActivity : BaseActivity() {
         setViewModel(viewModel)
         setObserve()
 
-        viewModel.requestVersion()
         /*ApiManager.getApi(this).appVersionCheck(URI.getUrlPath(URI.APP_VERSION), versionReq).enqueue(object : Callback<VersionRes>{
             override fun onResponse(call: Call<VersionRes>, response: Response<VersionRes>) {
                 if (response.isSuccessful) {
@@ -44,6 +45,10 @@ class MainActivity : BaseActivity() {
             }
         })*/
 
+        binding.versionCheck.setOnClickListener {
+            viewModel.requestVersion()
+        }
+
         binding.ocrTest.setOnClickListener {
             val intent = Intent(this, OcrTestActivity::class.java)
             startActivity(intent)
@@ -52,6 +57,15 @@ class MainActivity : BaseActivity() {
 
     private fun setObserve() {
         viewModel.getMutableVersionRes().observe(this, Observer {
+            CommonPopupDialog(message = "Version Check",
+                subMessage = "lastestAppVer : ${it.app.lastestAppVer}\n updateForceYn : ${it.app.updateForceYn}",
+                positiveButton = "확인",
+                positiveOnClickListener = object :
+                    CommonPopupDialog.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?) {
+                        finish()
+                    }
+                }).show(this@MainActivity)
             Toast.makeText(this@MainActivity, it.app.lastestAppVer, Toast.LENGTH_LONG).show()
         })
     }

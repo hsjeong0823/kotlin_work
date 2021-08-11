@@ -1,4 +1,4 @@
-package com.example.starbuckskotlin.ui
+package com.example.starbuckskotlin.ui.common
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -48,10 +48,14 @@ class CommonPopupDialog(private var detectBackKey: Boolean = true,
     fun show(activity: AppCompatActivity?) {
         activity?.let {
             if (!it.isFinishing) {
-                var fragmentTag = TAG_DEFAULT_COMMON_DIALOG
+                var fragmentTag =
+                    TAG_DEFAULT_COMMON_DIALOG
                 val arguments = arguments
                 if (null != arguments) {
-                    fragmentTag = arguments.getString(EXTRA_FRAGMENT_TAG, TAG_DEFAULT_COMMON_DIALOG)
+                    fragmentTag = arguments.getString(
+                        EXTRA_FRAGMENT_TAG,
+                        TAG_DEFAULT_COMMON_DIALOG
+                    )
                 }
 
                 if (fragmentTag != TAG_DEFAULT_COMMON_DIALOG) {

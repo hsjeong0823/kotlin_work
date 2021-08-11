@@ -25,4 +25,8 @@
         <item name="android:windowBackground">@color/c_transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="CommonEditTextTitleStyle">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

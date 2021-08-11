@@ -1,4 +1,4 @@
-package com.example.starbuckskotlin.ui
+package com.example.starbuckskotlin.ui.common
 
 import android.os.Handler
 import android.os.Looper

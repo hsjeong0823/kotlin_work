@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditTextInputLayout">
+        <attr name="emptyTitleText" format="reference|string" />
+        <attr name="hintEnabled" format="boolean" />
+        <attr name="android:enabled" />
+        <attr name="android:imeOptions" />
+        <attr name="android:inputType" />
+        <attr name="android:hint" />
+        <attr name="android:maxLength" />
+        <attr name="android:privateImeOptions" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+</resources>

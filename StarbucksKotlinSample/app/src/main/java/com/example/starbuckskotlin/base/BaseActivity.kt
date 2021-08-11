@@ -3,13 +3,14 @@ package com.example.starbuckskotlin.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.starbuckskotlin.ui.CommonLoadingDialog
-import com.example.starbuckskotlin.ui.CommonPopupDialog
+import com.example.starbuckskotlin.ui.common.CommonLoadingDialog
+import com.example.starbuckskotlin.ui.common.CommonPopupDialog
 import com.example.starbuckskotlin.util.LogUtil
 
 open class BaseActivity : AppCompatActivity() {
     protected val TAG = this.javaClass.simpleName
-    private val commonLoadingDialog = CommonLoadingDialog()
+    private val commonLoadingDialog =
+        CommonLoadingDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +27,11 @@ open class BaseActivity : AppCompatActivity() {
         })
 
         viewModel.getMutableNetworkResult().observe(this, Observer {
-            CommonPopupDialog(message = it.resultCode,
+            CommonPopupDialog(
+                message = it.resultCode,
                 subMessage = it.resultMessage,
-                positiveButton = "확인").show(this)
+                positiveButton = "확인"
+            ).show(this)
         })
     }
 
