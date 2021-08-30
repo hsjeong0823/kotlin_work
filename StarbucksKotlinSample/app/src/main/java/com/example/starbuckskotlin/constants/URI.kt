@@ -22,6 +22,11 @@ class URI {
 
         const val APP_VERSION = "/common/version.do" // 4.1.3. APP버전 조회
 
+        const val AUTH_TOKEN = "oauth/token"                                // 3.1 사용자 토큰 받기, 3.2  사용자 토큰 갱신 - 토큰 방식으로 변경되어 새로운 로그인 URL 생성
+        const val AUTH_USER = "/oauth/user"                                 // 3.3 사용자 암호 확인 - User 정보 확인 (ID & PW 로 유저 확인 여부)
+        const val AUTH_JWT_LOGIN = "/auth/jwtLogin.do"                      // 4.1.17. JWT 로그인 // 토큰 방식으로 변경되어 새로운 로그인 url 생성
+        const val NON_MEMBER_LOGIN_V2 = "/nonmember/auth/startupV2.do"      // 4.7.1. 개시요청
+
         fun getUrlPath(path: String) = authorityPath + path
     }
 }

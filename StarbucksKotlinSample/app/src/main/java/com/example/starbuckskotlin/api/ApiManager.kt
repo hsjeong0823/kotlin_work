@@ -26,10 +26,17 @@ class ApiManager private constructor(var context: Context) {
         private var apiExternal : ApiInterface? = null
 
         @Volatile
+        private var apiAuth : ApiInterface? = null
+
+        @Volatile
         private var api : ApiInterface? = null
 
         fun getExternalApi(context: Context): ApiInterface = apiExternal ?: synchronized(this) {
             apiExternal ?: ApiManager(context).getApiInterface(URI.scheme + "://" + URI.authorityExternal).also { apiExternal = it }
+        }
+
+        fun getAuthApi(context: Context): ApiInterface = apiAuth ?: synchronized(this) {
+            apiAuth ?: ApiManager(context).getApiInterface(URI.scheme + "://" + URI.auth).also { apiAuth = it }
         }
 
         fun getApi(context: Context): ApiInterface = api ?: synchronized(this) {

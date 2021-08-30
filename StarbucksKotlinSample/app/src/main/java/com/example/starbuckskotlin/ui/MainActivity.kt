@@ -49,6 +49,10 @@ class MainActivity : BaseActivity() {
             viewModel.requestVersion()
         }
 
+        binding.login.setOnClickListener {
+            LoginActivity.start(this)
+        }
+
         binding.ocrTest.setOnClickListener {
             val intent = Intent(this, OcrTestActivity::class.java)
             startActivity(intent)
@@ -57,15 +61,11 @@ class MainActivity : BaseActivity() {
 
     private fun setObserve() {
         viewModel.getMutableVersionRes().observe(this, Observer {
-            CommonPopupDialog(message = "Version Check",
+            CommonPopupDialog(
+                message = "Version Check",
                 subMessage = "lastestAppVer : ${it.app.lastestAppVer}\n updateForceYn : ${it.app.updateForceYn}",
-                positiveButton = "확인",
-                positiveOnClickListener = object :
-                    CommonPopupDialog.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?) {
-                        finish()
-                    }
-                }).show(this@MainActivity)
+                positiveButton = "확인"
+            ).show(this@MainActivity)
             Toast.makeText(this@MainActivity, it.app.lastestAppVer, Toast.LENGTH_LONG).show()
         })
     }

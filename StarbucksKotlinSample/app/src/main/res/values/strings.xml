@@ -4,4 +4,15 @@
     <string name="yes">예</string>
     <string name="no">아니오</string>
     <string name="confirm">확인</string>
+
+    <string name="main_login">로그인</string>
+    <string name="login_id_input_hint">아이디</string>
+    <string name="login_pw_input_hint">비밀번호</string>
+    <string name="login_login_btn">로그인하기</string>
+
+    <!-- 로그인 > 아이디 입력 팝업 -->
+    <string name="dialog_login_user_id_input_msg">아이디를 입력해주세요.</string>
+
+    <!-- 로그인 > 비밀번호 입력 팝업 -->
+    <string name="dialog_login_user_passwd_input_msg">비밀번호를 입력해주세요.</string>
 </resources>
