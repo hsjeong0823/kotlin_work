@@ -21,7 +21,11 @@ class ApiNetworkPresenter constructor(var networkCallBack: NetworkCallback? = nu
                     if (resultCode == null || resultCode == "0000") {
                         networkCallBack?.onResponseSuccess(call.request().tag(String::class.java), baseResponse)
                     } else {
-                        networkCallBack?.onResponseFailure(call.request().tag(String::class.java), baseResponse, resultCode, resultMessage)
+                        if (resultCode == "0001") {
+                            SessionManager.getInstance().verify()
+                        } else {
+                            networkCallBack?.onResponseFailure(call.request().tag(String::class.java), baseResponse, resultCode, resultMessage)
+                        }
                     }
                 } else {
                     networkCallBack?.onConvertErrorResponse(null, call.request().tag(String::class.java))
